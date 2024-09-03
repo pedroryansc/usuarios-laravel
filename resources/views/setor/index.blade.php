@@ -10,6 +10,15 @@
 
     <h1>Setores</h1>
     
+    <form action="{{route('setor.index')}}" method="post">
+        @csrf
+        @method("GET")
+        <p>
+            <input type="search" name="pesquisa" placeholder="Pesquisar pela descrição do setor" size="30"
+            value="{{request('pesquisa')}}">
+            <button type="submit">Pesquisar</button>
+        </p>
+    </form>
     <table border="1">
         <thead>
             <th>ID</th>

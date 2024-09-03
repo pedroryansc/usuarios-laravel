@@ -10,6 +10,33 @@
 
     <h1>Usuários</h1>
     
+    <form action="{{route('usuario.index')}}" method="post">
+        @csrf
+        @method("GET")
+        <p>
+            <input type="search" name="pesquisa" placeholder="Pesquisar pelo nome ou e-mail do usuário" size="35"
+            value="{{request('pesquisa')}}">
+
+            <select name="mes">
+                <option value="">Selecione o mês de aniversário</option>
+                @foreach(range(1, 12) as $mes)
+                    <option value="{{$mes}}" {{request("mes") == $mes ? "selected" : ""}}>
+                        {{ strftime("%B", mktime(0, 0, 0, $mes, 1)) }}
+                    </option>
+                @endforeach
+            </select>
+
+            <select name="setor">
+                <option value="">Selecione o setor</option>
+                @foreach($setores as $setor)
+                    <option value="{{$setor->id}}" {{request("setor") == $setor->id ? "selected" : ""}}>{{$setor->descricao}}</option>
+                @endforeach
+            </select>
+
+            <button type="submit">Pesquisar</button>
+        </p>
+    </form>
+
     <table border="1">
         <thead>
             <th>ID</th>

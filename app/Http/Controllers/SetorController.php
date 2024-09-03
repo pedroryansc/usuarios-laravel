@@ -11,9 +11,9 @@ class SetorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $setores = Setor::all();
+        $setores = Setor::where("descricao", "like", "%".$request->input("pesquisa")."%")->get();
 
         return view("setor.index", ["setores"=>$setores]);
     }

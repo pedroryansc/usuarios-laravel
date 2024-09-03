@@ -12,11 +12,20 @@ class UsuarioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $usuarios = Usuario::all();
+        if($request->filled("mes"))
+            $usuarios = Usuario::whereMonth("dataNascimento", $request->input("mes"))->get();
+        else if($request->filled("setor")){
+            $usuarios = Usuario::where("setor_id", $request->input("setor"))->get();
+        } else{
+            $usuarios = Usuario::where("nome", "like", "%".$request->input("pesquisa")."%")
+                                ->orWhere("email", "like", "%".$request->input("pesquisa")."%")->get();
+        }
 
-        return view("usuario.index", ["usuarios"=>$usuarios]);
+        $setores = Setor::all();
+
+        return view("usuario.index", ["usuarios"=>$usuarios, "setores"=>$setores]);
     }
 
     /**
