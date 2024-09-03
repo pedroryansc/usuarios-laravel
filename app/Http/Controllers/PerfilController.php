@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Perfil;
 use App\Models\Usuario;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class PerfilController extends Controller
@@ -46,6 +47,9 @@ class PerfilController extends Controller
     /**
      * Display the specified resource.
      */
+
+    // Ver o que porquê do show, edit, update e destroy não funcionarem passando o perfil como parâmetro
+
     public function show(string $id)
     {
         $perfil = Perfil::where("usuario_id", $id)->get()->all()[0];
