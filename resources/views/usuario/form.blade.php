@@ -9,6 +9,7 @@ Data de Nascimento: <input type="date" name="dataNascimento" value="@if(isset($u
 <br>
 Setor: 
 <select name="setor_id">
+    <option value="">Escolha o setor</option>
     @foreach($setores as $setor)
         <option value="{{$setor->id}}" @if(isset($usuario->setor_id) && $setor->id == $usuario->setor_id) selected @endif>
             {{$setor->descricao}}

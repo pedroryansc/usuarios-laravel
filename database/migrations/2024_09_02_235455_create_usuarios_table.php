@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date("dataNascimento");
             $table->unsignedBigInteger("setor_id");
             $table->timestamps();
-            $table->foreign("setor_id")->references("id")->on("setors");
+            $table->foreign("setor_id")->references("id")->on("setors")->onDelete("cascade");
         });
     }
 

@@ -68,6 +68,9 @@ class PerfilController extends Controller
         return view("perfil.edit", ["perfil"=>$perfil, "usuarios"=>$usuarios]);
     }
 
+
+    // Estudar para ver como resolver o UPDATE
+    
     /**
      * Update the specified resource in storage.
      */

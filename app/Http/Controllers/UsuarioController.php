@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use App\Models\Setor;
+use App\Models\Funcao;
+use App\Models\Usuario_Funcao;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -61,7 +63,9 @@ class UsuarioController extends Controller
      */
     public function show(Usuario $usuario)
     {
-        return view("usuario.show", ["usuario"=>$usuario]);
+        $funcoes = Usuario_Funcao::where("usuario_id", $usuario->id)->orderBy("dataInicio", "desc")->get();
+
+        return view("usuario.show", ["usuario"=>$usuario, "funcoes"=>$funcoes]);
     }
 
     /**
@@ -70,8 +74,9 @@ class UsuarioController extends Controller
     public function edit(Usuario $usuario)
     {
         $setores = Setor::all();
+        $funcoes = Funcao::all();
 
-        return view("usuario.edit", ["usuario"=>$usuario, "setores"=>$setores]);
+        return view("usuario.edit", ["usuario"=>$usuario, "setores"=>$setores, "funcoes"=>$funcoes]);
     }
 
     /**

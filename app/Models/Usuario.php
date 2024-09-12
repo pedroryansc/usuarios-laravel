@@ -11,6 +11,10 @@ class Usuario extends Model
 
     protected $fillable = ["nome", "email", "senha", "dataNascimento", "setor_id"];
 
+    public function funcoes(){
+        return $this->belongsToMany("App\Models\Funcao", "usuario__funcaos")->withPivot("dataInicio");
+    }
+
     public function setor(){
         return $this->belongsTo("App\Models\Setor");
     }
