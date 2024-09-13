@@ -1,4 +1,3 @@
-@csrf
 Usuário: 
 <select name="usuario_id">
     @foreach($usuarios as $usuario)

@@ -1,4 +1,3 @@
-@csrf
 Nome: <input type="text" name="nome" value="@if(isset($usuario->nome)){{$usuario->nome}}@endif"><br>
 <br>
 E-mail: <input type="text" name="email" value="@if(isset($usuario->email)){{$usuario->email}}@endif"><br>
